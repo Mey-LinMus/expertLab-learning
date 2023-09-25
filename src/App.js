@@ -1,22 +1,47 @@
-import "./App.css";
+import React from "react";
 import { gsap } from "gsap";
-import React, { useRef, useLayoutEffect } from "react"; // Import useRef and React
+import "./App.css";
+
+const { useLayoutEffect, useRef } = React;
+
+const Nested = () => {
+  return (
+    <div className="nested">
+      <div className="box">Nested Box</div>
+      <div className="circle">Nested Circle</div>
+    </div>
+  );
+};
 
 function App() {
-  const boxRef = useRef();
-
-  useLayoutEffect(() => {
-    // Refs allow you to access DOM nodes
-    console.log(boxRef); // { current: div.box }
-    // then we can animate them like so...
-    gsap.to(boxRef.current, {
-      rotation: "+=360"
-    });
-  }, []); // You should provide a dependency array here if needed.
+  const app = useRef();
+  const circle = useRef();
   
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.to(".box", { 
+        rotation: "+=360", 
+        duration: 10, 
+        repeat: -1,
+        ease: 'none'
+      });
+      
+      gsap.to(circle.current, { 
+        rotation: "+=360", 
+        duration: 3, 
+        repeat: -1,
+        ease: 'none'
+      });
+    }, app);
+    
+    return () => ctx.revert();
+  });
+
   return (
-    <div className="App">
-      <div className="box" ref={boxRef}>Hello World</div>
+    <div ref={app} className="App">
+      <div className="box">Box</div>
+      <div className="circle" ref={circle}>Circle</div>
+      <Nested/>
     </div>
   );
 }
