@@ -21,9 +21,9 @@ function App() {
     let ctx = gsap.context(() => {
       gsap.to(".box", { 
         rotation: "+=360", 
-        duration: 10, 
+        duration: 0.5, 
         repeat: -1,
-        ease: 'none'
+        ease: 'easeIn'
       });
       
       gsap.to(circle.current, { 
