@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { gsap } from "gsap";
+import React, { useRef, useLayoutEffect } from "react"; // Import useRef and React
 
 function App() {
+  const boxRef = useRef();
+
+  useLayoutEffect(() => {
+    // Refs allow you to access DOM nodes
+    console.log(boxRef); // { current: div.box }
+    // then we can animate them like so...
+    gsap.to(boxRef.current, {
+      rotation: "+=360"
+    });
+  }, []); // You should provide a dependency array here if needed.
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="box" ref={boxRef}>Hello World</div>
     </div>
   );
 }
