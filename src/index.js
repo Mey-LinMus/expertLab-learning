@@ -4,6 +4,7 @@ import "./index.css";
 import GSAP from "./components/GSAP";
 import D3 from "./components/D3";
 import Tone from "./components/AudioPlayer";
+import Project from "./components/Project";
 
 import reportWebVitals from "./reportWebVitals";
 
@@ -12,7 +13,8 @@ root.render(
   <React.StrictMode>
     {/* <GSAP /> */}
     {/* <D3 /> */}
-    <Tone />
+    {/* <Tone /> */}
+    <Project/>
   </React.StrictMode>
 );
 

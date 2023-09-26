@@ -1,0 +1,19 @@
+body {
+  background-color: rgba(0, 0, 0, 0.881);
+}
+
+.center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.play-button {
+  margin-top: 30px;
+  background-color: dodgerblue;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+}
