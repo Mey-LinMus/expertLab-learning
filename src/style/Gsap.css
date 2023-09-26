@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@400;600&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@400;600&display=swap");
 
 :root {
   --dark: #1d1d1d;
@@ -12,7 +12,6 @@
 }
 
 html, body {
-  background-color: var(--dark);
   color: var(--light);
   font-family: "Signika Negative", sans-serif;
   margin: 0;
@@ -30,7 +29,6 @@ html, body {
   text-align: center;
   background-color: var(--green);
   font-weight: 600;
-  color: var(--light);
 }
 
 .circle {
@@ -43,7 +41,6 @@ html, body {
   text-align: center;
   background-color: var(--purple);
   font-weight: 600;
-  color: var(--light);
 }
 
 .nested {
@@ -61,4 +58,4 @@ html, body {
   justify-content: space-around;
   min-height: 100vh;
   border: solid 2px white;
-}
+} */
