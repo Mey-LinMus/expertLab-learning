@@ -9,13 +9,15 @@ const Project = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const sound = useRef(null);
 
-  // Function to create the GSAP animation
-  const animateCircle = () => {
+ // Function to create the GSAP animation
+const animateCircle = () => {
     const tl = gsap.timeline();
-
-    tl.to(circleRef.current, { y: -100, duration: 0.2, ease: 'power1.inOut' })
-      .to(circleRef.current, { y: 0, duration: 0.2, ease: 'power1.inOut' });
+  
+    // Adjust the animation parameters for a more pronounced bounce
+    tl.to(circleRef.current, { y: -30, duration: 0.1, ease: 'power1.inOut' })
+      .to(circleRef.current, { y: 0, duration: 0.1, ease: 'power1.inOut' });
   };
+  
 
   // Function to set up the Howler.js sound
   const setupSound = () => {
@@ -75,8 +77,8 @@ const Project = () => {
       <div
         ref={circleRef}
         style={{
-          width: '50px',
-          height: '50px',
+          width: '100px',
+          height: '100px',
           backgroundColor: 'red',
           borderRadius: '50%',
           position: 'relative',
