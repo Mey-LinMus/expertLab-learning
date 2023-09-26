@@ -17,15 +17,40 @@ const Piano = () => {
       });
     };
 
-    const keys = ["A", "Z", "E", "R"];
+    const keys = {
+      A: "C4",
+      Z: "D4",
+      E: "E4",
+      R: "F4",
+    };
 
-    keys.forEach((key) => {
+    const handleClick = (key) => {
+      const note = keys[key];
       const keyElement = document.getElementById(key);
-      keyElement.addEventListener("click", () => playNote("C4", keyElement));
+      playNote(note, keyElement);
+    };
+
+    const handleKeyDown = (event) => {
+      const key = event.key.toUpperCase();
+      if (keys[key]) {
+        const note = keys[key];
+        const keyElement = document.getElementById(key);
+        playNote(note, keyElement);
+      }
+    };
+
+    // Add click event listeners to piano keys
+    Object.keys(keys).forEach((key) => {
+      const keyElement = document.getElementById(key);
+      keyElement.addEventListener("click", () => handleClick(key));
     });
+
+    // Add keyboard event listener
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       synth.dispose();
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
 
@@ -51,3 +76,4 @@ const Project = () => {
 };
 
 export default Project;
+
