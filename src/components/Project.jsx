@@ -18,9 +18,7 @@ const Project = () => {
       T: { x: 0, y: 200, scale: 5 },
       Y: { x: 0, y: 300, scale: 1 },
     };
-
     const defaultAnimation = { x: 0, y: 0, scale: 0.5 };
-
     // Define the note frequencies for each key
     const noteFrequencies = {
       A: "C4",
@@ -30,7 +28,6 @@ const Project = () => {
       T: "G4",
       Y: "A4",
     };
-
     // Function to play the animation based on the key
     const playAnimation = (key) => {
       const animation = animations[key] || defaultAnimation;
@@ -42,7 +39,6 @@ const Project = () => {
         ease: "power2.inOut",
       });
     };
-
     const playNote = (key, keyElement) => {
       const note = noteFrequencies[key];
       if (note) {
@@ -53,7 +49,6 @@ const Project = () => {
           yoyo: true,
           repeat: 1,
         });
-
         // Dispatch a custom event with the key as detail
         const event = new CustomEvent("keyClick", {
           detail: { key: keyElement.id },
@@ -61,9 +56,7 @@ const Project = () => {
         document.dispatchEvent(event);
       }
     };
-
     const keys = ["A", "Z", "E", "R", "T", "Y"];
-
     // Listen for keydown events on the document
     document.addEventListener("keydown", (event) => {
       const key = event.key.toUpperCase(); // Convert the pressed key to uppercase
@@ -73,12 +66,10 @@ const Project = () => {
         playAnimation(key);
       }
     });
-
     return () => {
       synth.dispose();
     };
   }, []);
-
   return (
     <div className="App">
       <header className="App-header">
@@ -91,7 +82,6 @@ const Project = () => {
           <div className="white-key" id="Y"></div>
         </div>
         <p>
-
           Use the AZERTY keys on your keyboard to play music
           <br />
           and to move the ball
@@ -101,5 +91,4 @@ const Project = () => {
     </div>
   );
 };
-
 export default Project;
