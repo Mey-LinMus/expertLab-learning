@@ -90,6 +90,12 @@ const Project = () => {
           <div className="white-key" id="T"></div>
           <div className="white-key" id="Y"></div>
         </div>
+        <p>
+
+          Use the AZERTY keys on your keyboard to play music
+          <br />
+          and to move the ball
+        </p>
         <div className="ball" ref={ballRef}></div>
       </header>
     </div>
