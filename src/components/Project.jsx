@@ -17,6 +17,7 @@ const Project = () => {
       R: { x: 0, y: 100, scale: 1 },
       T: { x: 0, y: 200, scale: 5 },
       Y: { x: 0, y: 300, scale: 1 },
+      U: { x: 0, y: 400, scale: 0.5 },
     };
     const defaultAnimation = { x: 0, y: 0, scale: 0.5 };
     // Define the note frequencies for each key
@@ -27,6 +28,7 @@ const Project = () => {
       R: "F4",
       T: "G4",
       Y: "A4",
+      U: "B8",
     };
     // Function to play the animation based on the key
     const playAnimation = (key) => {
@@ -56,7 +58,7 @@ const Project = () => {
         document.dispatchEvent(event);
       }
     };
-    const keys = ["A", "Z", "E", "R", "T", "Y"];
+    const keys = ["A", "Z", "E", "R", "T", "Y","U"];
     // Listen for keydown events on the document
     document.addEventListener("keydown", (event) => {
       const key = event.key.toUpperCase(); // Convert the pressed key to uppercase
@@ -80,6 +82,7 @@ const Project = () => {
           <div className="white-key" id="R"></div>
           <div className="white-key" id="T"></div>
           <div className="white-key" id="Y"></div>
+          <div className="white-key" id="U"></div>
         </div>
         <p>
           Use the AZERTY keys on your keyboard to play music
