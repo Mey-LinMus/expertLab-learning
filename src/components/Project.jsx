@@ -10,6 +10,7 @@ const Project = () => {
     const synth = new Tone.Synth().toDestination();
     const ball = ballRef.current;
 
+    // GSAP animations
     const animations = {
       A: { x: -100, y: 0, scale: 2 },
       Z: { x: 100, y: 0, scale: 1 },
@@ -23,7 +24,7 @@ const Project = () => {
       P: { x: 10, y: 50, scale: 0.2 },
     };
     const defaultAnimation = { x: 0, y: 0, scale: 0.5 };
-    // Define the note frequencies for each key
+    // Note frequencies
     const noteFrequencies = {
       A: "C4",
       Z: "D4",
@@ -64,20 +65,27 @@ const Project = () => {
         document.dispatchEvent(event);
       }
     };
-    const keys = ["A", "Z", "E", "R", "T", "Y", "U","I","O","P"];
-    // Listen for keydown events on the document
-    document.addEventListener("keydown", (event) => {
-      const key = event.key.toUpperCase(); // Convert the pressed key to uppercase
+    const keys = ["A", "Z", "E", "R", "T", "Y", "U", "I", "O", "P"];
+
+    const handleKeyDown = (event) => {
+      const key = event.key.toUpperCase();
       if (keys.includes(key)) {
         const keyElement = document.getElementById(key);
         playNote(key, keyElement);
         playAnimation(key);
       }
-    });
+    };
+
+    // Add event listener when component mounts
+    window.addEventListener("keydown", handleKeyDown);
+
+    // Remove event listener when component unmounts
     return () => {
+      window.removeEventListener("keydown", handleKeyDown);
       synth.dispose();
     };
   }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -103,4 +111,5 @@ const Project = () => {
     </div>
   );
 };
+
 export default Project;
