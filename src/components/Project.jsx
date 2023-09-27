@@ -22,6 +22,22 @@ const Project = () => {
       I: { x: 200, y: 100, scale: 3 },
       O: { x: 300, y: 200, scale: 8 },
       P: { x: 10, y: 50, scale: 0.2 },
+      Q: { x: -200, y: -100, scale: 1.5 },
+      S: { x: 200, y: -100, scale: 2 },
+      D: { x: -100, y: 400, scale: 3 },
+      F: { x: 150, y: -200, scale: 2 }, // New key F
+      G: { x: 50, y: -300, scale: 3 }, // New key G
+      H: { x: 300, y: -300, scale: 2.5 }, // New key H
+      J: { x: -300, y: 250, scale: 3.5 }, // New key J
+      K: { x: -250, y: -250, scale: 2.5 }, // New key K
+      L: { x: 250, y: 250, scale: 3.5 }, // New key L
+      M: { x: -250, y: 250, scale: 3 }, // New key M
+      W: { x: -200, y: 200, scale: 3 }, // New key W
+      X: { x: 200, y: -200, scale: 2.5 }, // New key X
+      C: { x: 300, y: 300, scale: 3 }, // New key C
+      V: { x: -300, y: -300, scale: 2 }, // New key V
+      B: { x: 300, y: -300, scale: 2 }, // New key B
+      N: { x: -300, y: 300, scale: 2.5 }, // New key N
     };
     const defaultAnimation = { x: 0, y: 0, scale: 0.5 };
     // Note frequencies
@@ -36,7 +52,24 @@ const Project = () => {
       I: "C4",
       O: "D4",
       P: "E4",
+      Q: "F3",
+      S: "G3",
+      D: "A3",
+      F: "B3",
+      G: "C4",
+      H: "D4",
+      J: "E4",
+      K: "F4",
+      L: "G4",
+      M: "A4",
+      W: "B4",
+      X: "C5",
+      C: "D5",
+      V: "E5",
+      B: "F5",
+      N: "G5",
     };
+
     // Function to play the animation based on the key
     const playAnimation = (key) => {
       const animation = animations[key] || defaultAnimation;
@@ -65,7 +98,34 @@ const Project = () => {
         document.dispatchEvent(event);
       }
     };
-    const keys = ["A", "Z", "E", "R", "T", "Y", "U", "I", "O", "P"];
+    const keys = [
+      "A",
+      "Z",
+      "E",
+      "R",
+      "T",
+      "Y",
+      "U",
+      "I",
+      "O",
+      "P",
+      "Q",
+      "S",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L",
+      "M",
+      "W",
+      "X",
+      "C",
+      "V",
+      "B",
+      "N",
+    ];
 
     const handleKeyDown = (event) => {
       const key = event.key.toUpperCase();
@@ -85,7 +145,6 @@ const Project = () => {
       synth.dispose();
     };
   }, []);
-
   return (
     <div className="App">
       <header className="App-header">
@@ -100,6 +159,22 @@ const Project = () => {
           <div className="white-key" id="I"></div>
           <div className="white-key" id="O"></div>
           <div className="white-key" id="P"></div>
+          <div className="white-key" id="Q"></div>
+          <div className="white-key" id="S"></div>
+          <div className="white-key" id="D"></div>
+          <div className="white-key" id="F"></div>
+          <div className="white-key" id="G"></div>
+          <div className="white-key" id="H"></div>
+          <div className="white-key" id="J"></div>
+          <div className="white-key" id="K"></div>
+          <div className="white-key" id="L"></div>
+          <div className="white-key" id="M"></div>
+          <div className="white-key" id="W"></div>
+          <div className="white-key" id="X"></div>
+          <div className="white-key" id="C"></div>
+          <div className="white-key" id="V"></div>
+          <div className="white-key" id="B"></div>
+          <div className="white-key" id="N"></div>
         </div>
         <p>
           Use the AZERTY keys on your keyboard to play music
