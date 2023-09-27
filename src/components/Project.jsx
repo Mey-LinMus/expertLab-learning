@@ -10,9 +10,9 @@ const Project = () => {
     const synth = new Tone.Synth().toDestination();
     const ball = ballRef.current;
 
-    // Ball animations
+    // Pace-man animations
     const animations = {
-      A: { x: -100, y: 0, scale: 2, duration: 0.5 },
+      A: { x: -100, y: 0, scale: 2 },
       Z: { x: 100, y: 0, scale: 1 },
       E: { x: 0, y: -100, scale: 1 },
       R: { x: 0, y: 100, scale: 1 },
@@ -155,9 +155,7 @@ const Project = () => {
       <header className="App-header">
         <div className="piano">{pianoKeys}</div>
         <p>
-          Use the keys on your keyboard to play music
-          <br />
-          and to move the ball
+          Use the keys on your keyboard to play music and to move the ball
         </p>
         <div className="ball" ref={ballRef}></div>
       </header>
