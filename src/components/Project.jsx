@@ -10,9 +10,9 @@ const Project = () => {
     const synth = new Tone.Synth().toDestination();
     const ball = ballRef.current;
 
-    // GSAP animations
+    // Ball animations
     const animations = {
-      A: { x: -100, y: 0, scale: 2 },
+      A: { x: -100, y: 0, scale: 2, duration: 0.5 },
       Z: { x: 100, y: 0, scale: 1 },
       E: { x: 0, y: -100, scale: 1 },
       R: { x: 0, y: 100, scale: 1 },
@@ -25,22 +25,24 @@ const Project = () => {
       Q: { x: -200, y: -100, scale: 1.5 },
       S: { x: 200, y: -100, scale: 2 },
       D: { x: -100, y: 400, scale: 3 },
-      F: { x: 150, y: -200, scale: 2 }, // New key F
-      G: { x: 50, y: -300, scale: 3 }, // New key G
-      H: { x: 300, y: -300, scale: 2.5 }, // New key H
-      J: { x: -300, y: 250, scale: 3.5 }, // New key J
-      K: { x: -250, y: -250, scale: 2.5 }, // New key K
-      L: { x: 250, y: 250, scale: 3.5 }, // New key L
-      M: { x: -250, y: 250, scale: 3 }, // New key M
-      W: { x: -200, y: 200, scale: 3 }, // New key W
-      X: { x: 200, y: -200, scale: 2.5 }, // New key X
-      C: { x: 300, y: 300, scale: 3 }, // New key C
-      V: { x: -300, y: -300, scale: 2 }, // New key V
-      B: { x: 300, y: -300, scale: 2 }, // New key B
-      N: { x: -300, y: 300, scale: 2.5 }, // New key N
+      F: { x: 150, y: -200, scale: 2 },
+      G: { x: 50, y: -300, scale: 3 },
+      H: { x: 300, y: -300, scale: 2.5 },
+      J: { x: -300, y: 250, scale: 3.5 },
+      K: { x: -250, y: -250, scale: 2.5 },
+      L: { x: 250, y: 250, scale: 3.5 },
+      M: { x: -250, y: 250, scale: 3 },
+      W: { x: -200, y: 200, scale: 3 },
+      X: { x: 200, y: -200, scale: 2.5 },
+      C: { x: 300, y: 300, scale: 3 },
+      V: { x: -300, y: -300, scale: 2 },
+      B: { x: 300, y: -300, scale: 2 },
+      N: { x: -300, y: 300, scale: 2.5 },
     };
+
     const defaultAnimation = { x: 0, y: 0, scale: 0.5 };
-    // Note frequencies
+
+    // Notes of the keys
     const noteFrequencies = {
       A: "C4",
       Z: "D4",
@@ -70,34 +72,7 @@ const Project = () => {
       N: "G5",
     };
 
-    // Function to play the animation based on the key
-    const playAnimation = (key) => {
-      const animation = animations[key] || defaultAnimation;
-      gsap.to(ball, {
-        x: animation.x,
-        y: animation.y,
-        scale: animation.scale,
-        duration: 0.5,
-        ease: "power2.inOut",
-      });
-    };
-    const playNote = (key, keyElement) => {
-      const note = noteFrequencies[key];
-      if (note) {
-        synth.triggerAttackRelease(note, "4n");
-        gsap.to(keyElement, {
-          duration: 0.2,
-          scaleY: 0.8,
-          yoyo: true,
-          repeat: 1,
-        });
-        // Dispatch a custom event with the key as detail
-        const event = new CustomEvent("keyClick", {
-          detail: { key: keyElement.id },
-        });
-        document.dispatchEvent(event);
-      }
-    };
+    //Array of keys
     const keys = [
       "A",
       "Z",
@@ -127,57 +102,60 @@ const Project = () => {
       "N",
     ];
 
-    const handleKeyDown = (event) => {
-      const key = event.key.toUpperCase();
-      if (keys.includes(key)) {
-        const keyElement = document.getElementById(key);
-        playNote(key, keyElement);
-        playAnimation(key);
+    // Function to play the animation and note for a key
+    const playKey = (key) => {
+      const animation = animations[key] || defaultAnimation;
+      const keyElement = document.getElementById(key);
+      if (keyElement) {
+        gsap.to(ball, {
+          x: animation.x,
+          y: animation.y,
+          scale: animation.scale,
+          duration: 0.5,
+          ease: "power2.inOut",
+        });
+
+        const note = noteFrequencies[key];
+        if (note) {
+          synth.triggerAttackRelease(note, "4n");
+          gsap.to(keyElement, {
+            duration: 0.2,
+            scaleY: 0.8,
+            yoyo: true,
+            repeat: 1,
+          });
+        }
       }
     };
 
-    // Add event listener when component mounts
+    // Event listener for keydown
+    const handleKeyDown = (event) => {
+      const key = event.key.toUpperCase();
+      if (keys.includes(key)) {
+        playKey(key);
+      }
+    };
+
     window.addEventListener("keydown", handleKeyDown);
 
-    // Remove event listener when component unmounts
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       synth.dispose();
     };
   }, []);
+
+  // Create piano keys JSX
+  const pianoKeys = Array.from({ length: 26 }, (_, index) => {
+    const key = String.fromCharCode(65 + index);
+    return <div className="white-key" id={key} key={key}></div>;
+  });
+
   return (
     <div className="App">
       <header className="App-header">
-        <div className="piano">
-          <div className="white-key" id="A"></div>
-          <div className="white-key" id="Z"></div>
-          <div className="white-key" id="E"></div>
-          <div className="white-key" id="R"></div>
-          <div className="white-key" id="T"></div>
-          <div className="white-key" id="Y"></div>
-          <div className="white-key" id="U"></div>
-          <div className="white-key" id="I"></div>
-          <div className="white-key" id="O"></div>
-          <div className="white-key" id="P"></div>
-          <div className="white-key" id="Q"></div>
-          <div className="white-key" id="S"></div>
-          <div className="white-key" id="D"></div>
-          <div className="white-key" id="F"></div>
-          <div className="white-key" id="G"></div>
-          <div className="white-key" id="H"></div>
-          <div className="white-key" id="J"></div>
-          <div className="white-key" id="K"></div>
-          <div className="white-key" id="L"></div>
-          <div className="white-key" id="M"></div>
-          <div className="white-key" id="W"></div>
-          <div className="white-key" id="X"></div>
-          <div className="white-key" id="C"></div>
-          <div className="white-key" id="V"></div>
-          <div className="white-key" id="B"></div>
-          <div className="white-key" id="N"></div>
-        </div>
+        <div className="piano">{pianoKeys}</div>
         <p>
-          Use the AZERTY keys on your keyboard to play music
+          Use the keys on your keyboard to play music
           <br />
           and to move the ball
         </p>
