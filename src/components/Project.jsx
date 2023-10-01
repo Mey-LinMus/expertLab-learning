@@ -95,7 +95,7 @@ const Project = () => {
           synth.triggerAttackRelease(note, "4n");
           gsap.to(keyElement, {
             duration: 0.2,
-            scaleY: 0.2,
+            scaleY: 0.8,
             yoyo: true,
             repeat: 1,
           });
@@ -119,11 +119,37 @@ const Project = () => {
     };
   }, []);
 
-  // Create piano keys JSX in the correct order
-  const pianoKeys = Array.from({ length: 26 }, (_, index) => {
-    const key = String.fromCharCode(65 + index);
-    return <div className="white-key" id={key} key={key}></div>;
-  });
+  // Order the piano keys according to the AZERTY keyboard layout
+  const pianoKeys = [
+    "A",
+    "Z",
+    "E",
+    "R",
+    "T",
+    "Y",
+    "U",
+    "I",
+    "O",
+    "P",
+    "Q",
+    "S",
+    "D",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L",
+    "M",
+    "W",
+    "X",
+    "C",
+    "V",
+    "B",
+    "N",
+  ].map((key) => (
+    <div className="white-key" id={key} key={key}></div>
+  ));
 
   return (
     <div className="App">
