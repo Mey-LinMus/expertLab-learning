@@ -1,22 +1,35 @@
 .App {
   text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
 }
 
 .App-header {
   background-color: #282c34;
-
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
   color: white;
+}
+
+.screen {
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 .piano {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+}
+
+.white-key {
+  width: 30px;
+  height: 120px;
+  background-color: rgb(255, 255, 255);
+  margin: 0 2px;
 }
 
 .ball {
@@ -27,5 +40,5 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%);
 }
