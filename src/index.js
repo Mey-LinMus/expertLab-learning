@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import GSAP from "./components/GSAP";
-import D3 from "./components/D3";
 import AudioPlayer from "./components/AudioPlayer";
 import Project from "./components/Project";
 
